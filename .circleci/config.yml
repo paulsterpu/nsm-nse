@@ -156,7 +156,7 @@ publish-helm-charts-steps: &publish-helm-charts-steps
     - checkout
     - add_ssh_keys:
         fingerprints:
-          - "a1:e2:52:cc:b1:ff:73:76:f0:29:6b:3a:48:01:8f:97"
+          - "L2vuFsr0MVP1t5TOpyP2yeY3XTqfMVySY7sL9eO+xjg"
     - run:
         name: publish helm charts
         command: |
