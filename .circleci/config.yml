@@ -151,7 +151,20 @@ publish-steps: &publish-steps
               docker push ${PUB_ORG}/${image}:${CIRCLE_BRANCH}-${TAGSUFFIX}
           done
 
-
+publish-helm-charts-steps: &publish-helm-charts-steps
+  steps:
+    - checkout
+    - add_ssh_keys:
+        fingerprints:
+          - "a1:e2:52:cc:b1:ff:73:76:f0:29:6b:3a:48:01:8f:97"
+    - run:
+        name: deploy & test kiknos
+        command: |
+          git config user.email "paulsterpu@gmail.com"
+          git config user.name "CircleCI Job"
+          git checkout master
+          git commit --allow-empty -am "Automatic commit from CircleCI [skip ci]"
+          git push origin master
 jobs:
   build-NSEs:
     <<: *defaults
@@ -192,6 +205,10 @@ jobs:
     <<: *defaults
     <<: *publish-steps
 
+  publish-helm-chart:
+    <<: *defaults
+    <<: *publish-helm-charts-steps
+
 
 orbs:
   helm: circleci/helm@0.2.1
@@ -215,4 +232,4 @@ workflows:
               only:
                 - master
                 - /release.*/
-
+      - publish-helm-chart
