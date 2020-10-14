@@ -166,7 +166,7 @@ publish-helm-charts-steps: &publish-helm-charts-steps
           git init
           git remote add origin https://github.com/paulsterpu/nse-helm-repo
           git config user.email "paulsterpu@gmail.com"
-          git config user.name "CircleCI Job"
+          git config user.name "paulsterpu"
           cat .git/config
           git branch
           git commit --allow-empty -am "Automatic commit from CircleCI [skip ci]"
