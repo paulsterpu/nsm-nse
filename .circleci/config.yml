@@ -158,11 +158,18 @@ publish-helm-charts-steps: &publish-helm-charts-steps
         fingerprints:
           - "a1:e2:52:cc:b1:ff:73:76:f0:29:6b:3a:48:01:8f:97"
     - run:
-        name: deploy & test kiknos
+        name: publish helm charts
         command: |
+          pwd
+          mkdir commit_test
+          cd commit_test
+          git init
+          git remote add origin https://github.com/paulsterpu/nse-helm-repo
           git config user.email "paulsterpu@gmail.com"
           git config user.name "CircleCI Job"
+          cat .git/config
           git checkout master
+          git branch
           git commit --allow-empty -am "Automatic commit from CircleCI [skip ci]"
           git push origin master
 jobs:
