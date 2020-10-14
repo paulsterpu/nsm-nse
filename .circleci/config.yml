@@ -168,7 +168,6 @@ publish-helm-charts-steps: &publish-helm-charts-steps
           git config user.email "paulsterpu@gmail.com"
           git config user.name "CircleCI Job"
           cat .git/config
-          git checkout master
           git branch
           git commit --allow-empty -am "Automatic commit from CircleCI [skip ci]"
           git push origin master
