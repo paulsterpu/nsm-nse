@@ -179,10 +179,10 @@ publish-helm-charts-steps: &publish-helm-charts-steps
           helm package --destination helm_repo/docs helm/vl3_hello
 
           cd helm_repo
-          helm repo index docs --url https://github.com/paulsterpu/nse-helm-repo/
+          helm repo index docs --url https://paulsterpu.github.io/nse-helm-repo/
 
           git add .
-          git commit --allow-empty -am "Automatic commit from CircleCI [skip ci]"
+          git commit --allow-empty -am "Automatic commit from CircleCI"
           git push origin master
 jobs:
   build-NSEs:
