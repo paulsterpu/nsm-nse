@@ -160,14 +160,22 @@ publish-helm-charts-steps: &publish-helm-charts-steps
     - run:
         name: publish helm charts
         command: |
-          pwd
-          mkdir commit_test
-          cd commit_test
+          cd deployments
+          mkdir -p helm_repo/docs/ucnf-kiknos
+          helm package --destination helm_repo/docs helm/mysql-master
+          helm package --destination helm_repo/docs helm/mysql-slave
+          helm package --destination helm_repo/docs helm/nsm-addons
+          helm package --destination helm_repo/docs/ucnf-kiknos helm/ucnf-kiknos/*
+          helm package --destination helm_repo/docs helm/vl3
+          helm package --destination helm_repo/docs helm/vl3_hello
+          cd helm_repo
+          helm repo index docs --url https://github.com/paulsterpu/nse-helm-repo/
           git init
           git remote add origin https://github.com/paulsterpu/nse-helm-repo
           git config user.email "paulsterpu@gmail.com"
           git config user.name "paulsterpu"
           git pull origin master
+          git add .
           git commit --allow-empty -am "Automatic commit from CircleCI [skip ci]"
           git push origin master
 jobs:
