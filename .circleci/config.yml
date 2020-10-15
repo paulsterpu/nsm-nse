@@ -163,12 +163,14 @@ publish-helm-charts-steps: &publish-helm-charts-steps
           cd deployments
           mkdir -p helm_repo/docs/ucnf-kiknos
 
-          git init helm_repo
+          cd helm_repo
+          git init
           git remote add origin https://github.com/paulsterpu/nse-helm-repo
           git config user.email "paulsterpu@gmail.com"
           git config user.name "paulsterpu"
           git pull origin master
 
+          cd ..
           helm package --destination helm_repo/docs helm/mysql-master
           helm package --destination helm_repo/docs helm/mysql-slave
           helm package --destination helm_repo/docs helm/nsm-addons
