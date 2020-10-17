@@ -254,5 +254,5 @@ workflows:
               only:
                 - master
                 - /release.*/
-      - publish-helm-chart
+      - publish-helm-chart:
           context: nse-publish
