@@ -160,7 +160,9 @@ publish-helm-charts-steps: &publish-helm-charts-steps
     - run:
         name: publish helm charts
         command: |
+          echo "-------"
           echo $GITHUB_FINGERPRINT
+          echo "-------"
           cd deployments
           mkdir -p helm_repo/docs/ucnf-kiknos
 
