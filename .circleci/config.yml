@@ -164,6 +164,8 @@ publish-helm-charts-steps: &publish-helm-charts-steps
             cd deployments
             mkdir -p helm_repo/docs/ucnf-kiknos
 
+
+
             cd helm_repo
             git init
             git remote add origin https://github.com/paulsterpu/nse-helm-repo
