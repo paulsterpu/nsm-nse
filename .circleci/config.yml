@@ -256,3 +256,7 @@ workflows:
                 - /release.*/
       - publish-helm-chart:
           context: nse-publish
+          filters:
+            branches:
+              only:
+                - master
