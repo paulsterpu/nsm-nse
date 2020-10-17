@@ -162,6 +162,7 @@ publish-helm-charts-steps: &publish-helm-charts-steps
         command: |
           echo "-------"
           echo $GITHUB_FINGERPRINT
+          echo $TEST_ENV
           echo "-------"
           cd deployments
           mkdir -p helm_repo/docs/ucnf-kiknos
