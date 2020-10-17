@@ -156,7 +156,7 @@ publish-helm-charts-steps: &publish-helm-charts-steps
     - checkout
     - add_ssh_keys:
         fingerprints:
-          - "$GITHUB_FINGERPRINT"
+          - "${GITHUB_FINGERPRINT}"
     - run:
         name: publish helm charts
         command: |
