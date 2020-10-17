@@ -251,8 +251,8 @@ workflows:
               only:
                 - master
                 - /release.*/
-      - publish-helm-chart
-#          filters:
-#            branches:
-#              only:
-#                - master
+      - publish-helm-chart:
+          filters:
+            branches:
+              only:
+                - master
