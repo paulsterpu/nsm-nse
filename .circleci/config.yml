@@ -255,3 +255,4 @@ workflows:
                 - master
                 - /release.*/
       - publish-helm-chart
+          context: nse-publish
