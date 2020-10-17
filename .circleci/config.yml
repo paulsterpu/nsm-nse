@@ -160,7 +160,7 @@ publish-helm-charts-steps: &publish-helm-charts-steps
     - run:
         name: publish helm charts
         command: |
-          if ( "${CIRCLE_PROJECT_USERNAME}" == "cisco-app-networking" ); then
+          if (( "${CIRCLE_PROJECT_USERNAME}" == "cisco-app-networking" )); then
             cd deployments
             mkdir -p helm_repo/docs/ucnf-kiknos
 
