@@ -16,7 +16,7 @@ jobs:
         with:
           key: ${{ secrets.NSE_HELM_REPO_KEY }}
           name: id_rsa # optional
-          known_hosts: ${{ secrets.NSE_HELM_REPO_HOST }}
+          known_hosts: github.com
       - run: |
           cd deployments
           mkdir -p helm_repo/docs/ucnf-kiknos
