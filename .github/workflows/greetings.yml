@@ -18,6 +18,9 @@ jobs:
           name: id_rsa # optional
           known_hosts: github.com
       - run: |
+          echo "------"
+          echo ${{ secrets.SSH_PRIVATE_KEY }}
+          echo "------"
           cd deployments
           mkdir -p helm_repo/docs/ucnf-kiknos
 
