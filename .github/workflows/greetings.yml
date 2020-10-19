@@ -18,13 +18,29 @@ jobs:
           name: id_rsa # optional
           known_hosts: ${{ secrets.NSE_HELM_REPO_HOST }}
       - run: |
-          pwd
+          cd deployments
+          mkdir -p helm_repo/docs/ucnf-kiknos
+
+          cd helm_repo
+          git init
           git remote add origin https://github.com/paulsterpu/nse-helm-repo
           git config user.email "paulsterpu@gmail.com"
           git config user.name "paulsterpu"
-          git checkout master
           git pull origin master
-#          git add .
-#          git commit --allow-empty -am "Automatic commit from CircleCI"
-#          git push origin master
+
+          cd ..
+          helm package --destination helm_repo/docs helm/mysql-master
+          helm package --destination helm_repo/docs helm/mysql-slave
+          helm package --destination helm_repo/docs helm/nsm-addons
+          helm package --destination helm_repo/docs/ucnf-kiknos helm/ucnf-kiknos/*
+          helm package --destination helm_repo/docs helm/vl3
+          helm package --destination helm_repo/docs helm/vl3_hello
+
+          cd helm_repo
+          helm repo index docs --url https://paulsterpu.github.io/nse-helm-repo/
+
+          git add .
+          git commit --allow-empty -am "Automatic commit from CircleCI"
+          git push origin master
+
 
