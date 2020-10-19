@@ -31,7 +31,7 @@ jobs:
       - name: Publish the Helm Charts
         run: |
           mkdir -p docs
-          mv deployments/helm_repo/docs/* docs
+          cp -R deployments/helm_repo/docs/* docs
           rm -rf deployments/helm_repo
 
 #            git config user.email "paulsterpu@gmail.com"
