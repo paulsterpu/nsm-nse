@@ -8,7 +8,7 @@ jobs:
   publish-helm-chart:
     runs-on: ubuntu-latest
     container: ciscoappnetworking/kubectl_kind:latest
-    if: "context.repository_owner == cisco-app-networking"
+    if: "github.repository_owner == cisco-app-networking"
     steps:
       - name: Checkout the code
         uses: actions/checkout@v2
