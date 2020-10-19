@@ -32,6 +32,9 @@ jobs:
 
           cd ..
 
+          git config user.email "paulsterpu@gmail.com"
+          git config user.name "paulsterpu"
+
           git add .
           git commit -m "Auto commit"
           git push
