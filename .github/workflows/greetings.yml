@@ -2,13 +2,13 @@ name: Publish NSE Helm Charts
 
 on:
   push:
-#    branches: [ master ]
+    branches: [ master ]
 
 jobs:
   publish-helm-chart:
     runs-on: ubuntu-latest
     container: ciscoappnetworking/kubectl_kind:latest
-    if: "github.repository_owner == 'paulsterpu'"
+    if: "github.repository_owner == 'cisco-app-networking'"
     steps:
       - name: Checkout the code
         uses: actions/checkout@v2
