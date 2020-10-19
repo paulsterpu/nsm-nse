@@ -43,7 +43,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source-directory: 'helm_repo'
+          source-directory: 'nsm-nse/helm_repo'
           destination-github-username: 'paulsterpu'
           destination-repository-name: 'nse-helm-repo'
           user-email: paulsterpu@gmail.com
