@@ -1,6 +1,6 @@
 name: Greetings
 
-on: [pull_request, issues, push]
+on: [push]
 
 jobs:
   publish-helm-chart:
@@ -15,8 +15,6 @@ jobs:
 
       - name: Pack the Helm Charts
         run: |
-          pwd
-          ls
           cd deployments
           mkdir -p helm_repo/docs/ucnf-kiknos
 
@@ -30,19 +28,18 @@ jobs:
           cd helm_repo
           helm repo index docs --url https://paulsterpu.github.io/nse-helm-repo/
 
-          cd ../..
+      - name: Publish the Helm Charts
+          run: |
+            mkdir docs
+            mv deployments/helm_repo/docs/* docs
+            rm -rf deployments/helm_repo
 
-          mkdir docs
-          mv deployments/helm_repo/docs/* docs
-          rm -rf helm_repo
-          rm -rf deployments/docs
-
-          git config user.email "paulsterpu@gmail.com"
-          git config user.name "paulsterpu"
-
-          git add .
-          git commit -m "Auto commit"
-          git push
+#            git config user.email "paulsterpu@gmail.com"
+#            git config user.name "paulsterpu"
+#
+#            git add .
+#            git commit -m "Auto commit"
+#            git push
 
 #      - name: Pushes to another repository
 #        uses: cpina/github-action-push-to-another-repository@master
