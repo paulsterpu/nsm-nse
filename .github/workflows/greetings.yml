@@ -15,6 +15,7 @@ jobs:
 
       - name: Pack the Helm Charts
         run: |
+          pwd
           cd deployments
           mkdir -p helm_repo/docs/ucnf-kiknos
 
