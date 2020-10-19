@@ -27,7 +27,7 @@ jobs:
 
           cd helm_repo_tmp
           helm repo index docs --url https://paulsterpu.github.io/nsm-nse/
-          echo "NSE HELM REPO" > index.html
+          echo "NSE HELM REPO" > docs/index.html
 
       - name: Publish the Helm Charts
         run: |
