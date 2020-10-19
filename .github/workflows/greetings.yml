@@ -1,4 +1,4 @@
-name: Greetings
+name: Publish NSE Helm Charts
 
 on:
   push:
