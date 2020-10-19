@@ -23,7 +23,7 @@ jobs:
 
           cd helm_repo
           git init
-          git remote add origin https://github.com/paulsterpu/nse-helm-repo
+          git remote add origin git@github.com:paulsterpu/nse-helm-repo.git
           git config user.email "paulsterpu@gmail.com"
           git config user.name "paulsterpu"
           git pull origin master
