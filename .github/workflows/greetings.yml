@@ -47,3 +47,6 @@ jobs:
           destination-github-username: 'paulsterpu'
           destination-repository-name: 'nse-helm-repo'
           user-email: paulsterpu@gmail.com
+        run: |
+          pwd
+          ls
