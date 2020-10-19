@@ -2,7 +2,7 @@ name: Greetings
 
 on:
   push:
-    brancher: [ master ]
+    branches: [ master ]
 
 jobs:
   publish-helm-chart:
