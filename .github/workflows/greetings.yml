@@ -30,7 +30,7 @@ jobs:
 
       - name: Publish the Helm Charts
         run: |
-          mkdir docs
+          mkdir -p docs
           mv deployments/helm_repo/docs/* docs
           rm -rf deployments/helm_repo
 
