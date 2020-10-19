@@ -14,6 +14,7 @@ jobs:
           ref: 'master'
 
       - name: Pack the Helm Charts
+        working-directory: ./nsm-nse
         run: |
           pwd
           cd deployments
