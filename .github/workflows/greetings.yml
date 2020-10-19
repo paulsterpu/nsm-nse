@@ -3,24 +3,18 @@ name: Greetings
 on: [pull_request, issues, push]
 
 jobs:
-  greeting:
+  publish-helm-chart:
     runs-on: ubuntu-latest
     container: ciscoappnetworking/kubectl_kind:latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout the code
+        uses: actions/checkout@v2
         with:
           fetch-depth: '0'
           ref: 'master'
-      - name: Install SSH key
-        uses: shimataro/ssh-key-action@v2
-        with:
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          name: id_rsa # optional
-          known_hosts: github.com
-      - run: |
-          echo "------"
-          echo ${{ secrets.SSH_PRIVATE_KEY }}
-          echo "------"
+
+      - name: Pack the Helm Charts
+        run: |
           cd deployments
           mkdir -p helm_repo/docs/ucnf-kiknos
 
@@ -42,8 +36,12 @@ jobs:
           cd helm_repo
           helm repo index docs --url https://paulsterpu.github.io/nse-helm-repo/
 
-          git add .
-          git commit --allow-empty -am "Automatic commit from CircleCI"
-          git push origin master
-
-
+      - name: Pushes to another repository
+        uses: cpina/github-action-push-to-another-repository@master
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source-directory: 'helm_repo'
+          destination-github-username: 'paulsterpu'
+          destination-repository-name: 'nse-helm-repo'
+          user-email: paulsterpu@gmail.com
