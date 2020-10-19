@@ -31,10 +31,11 @@ jobs:
           cd helm_repo
           helm repo index docs --url https://paulsterpu.github.io/nse-helm-repo/
 
-          cd ..
+          cd ../..
 
-          mv helm_repo/docs/ docs
+          mv deployments/helm_repo/docs/* docs
           rm -rf helm_repo
+          rm -rf deployments/docs
 
           git config user.email "paulsterpu@gmail.com"
           git config user.name "paulsterpu"
