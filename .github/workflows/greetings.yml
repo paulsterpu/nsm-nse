@@ -18,7 +18,6 @@ jobs:
           pwd
           ls
           cd deployments
-          mkdir docs
           mkdir -p helm_repo/docs/ucnf-kiknos
 
           helm package --destination helm_repo/docs helm/mysql-master
@@ -33,6 +32,7 @@ jobs:
 
           cd ../..
 
+          mkdir docs
           mv deployments/helm_repo/docs/* docs
           rm -rf helm_repo
           rm -rf deployments/docs
