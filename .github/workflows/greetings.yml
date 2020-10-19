@@ -16,23 +16,24 @@ jobs:
       - name: Pack the Helm Charts
         run: |
           cd deployments
-          mkdir -p helm_repo/docs/ucnf-kiknos
+          mkdir -p helm_repo_tmp/docs/ucnf-kiknos
 
-          helm package --destination helm_repo/docs helm/mysql-master
-          helm package --destination helm_repo/docs helm/mysql-slave
-          helm package --destination helm_repo/docs helm/nsm-addons
-          helm package --destination helm_repo/docs/ucnf-kiknos helm/ucnf-kiknos/*
-          helm package --destination helm_repo/docs helm/vl3
-          helm package --destination helm_repo/docs helm/vl3_hello
+          helm package --destination helm_repo_tmp/docs helm/mysql-master
+          helm package --destination helm_repo_tmp/docs helm/mysql-slave
+          helm package --destination helm_repo_tmp/docs helm/nsm-addons
+          helm package --destination helm_repo_tmp/docs/ucnf-kiknos helm/ucnf-kiknos/*
+          helm package --destination helm_repo_tmp/docs helm/vl3
+          helm package --destination helm_repo_tmp/docs helm/vl3_hello
 
-          cd helm_repo
-          helm repo index docs --url https://paulsterpu.github.io/nse-helm-repo/
+          cd helm_repo_tmp
+          helm repo index docs --url https://paulsterpu.github.io/nsm-nse/
+          echo "NSE HELM REPO" > index.html
 
       - name: Publish the Helm Charts
         run: |
           mkdir -p docs
-          cp -R deployments/helm_repo/docs/* docs
-          rm -rf deployments/helm_repo
+          cp -R deployments/helm_repo_tmp/docs/* docs
+          rm -rf deployments/helm_repo_tmp
 
           git config user.email "paulsterpu@gmail.com"
           git config user.name "paulsterpu"
@@ -46,7 +47,7 @@ jobs:
 #        env:
 #          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
 #        with:
-#          source-directory: 'nsm-nse/nsm-nse/helm_repo'
+#          source-directory: 'nsm-nse/nsm-nse/helm_repo_tmp'
 #          destination-github-username: 'paulsterpu'
 #          destination-repository-name: 'nse-helm-repo'
 #          user-email: paulsterpu@gmail.com
