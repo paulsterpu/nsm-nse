@@ -34,12 +34,12 @@ jobs:
           cp -R deployments/helm_repo/docs/* docs
           rm -rf deployments/helm_repo
 
-#            git config user.email "paulsterpu@gmail.com"
-#            git config user.name "paulsterpu"
-#
-#            git add .
-#            git commit -m "Auto commit"
-#            git push
+          git config user.email "paulsterpu@gmail.com"
+          git config user.name "paulsterpu"
+
+          git add .
+          git commit -m "Auto commit"
+          git push
 
 #      - name: Pushes to another repository
 #        uses: cpina/github-action-push-to-another-repository@master
