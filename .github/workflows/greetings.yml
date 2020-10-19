@@ -29,10 +29,10 @@ jobs:
           helm repo index docs --url https://paulsterpu.github.io/nse-helm-repo/
 
       - name: Publish the Helm Charts
-          run: |
-            mkdir docs
-            mv deployments/helm_repo/docs/* docs
-            rm -rf deployments/helm_repo
+        run: |
+          mkdir docs
+          mv deployments/helm_repo/docs/* docs
+          rm -rf deployments/helm_repo
 
 #            git config user.email "paulsterpu@gmail.com"
 #            git config user.name "paulsterpu"
