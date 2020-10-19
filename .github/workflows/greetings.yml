@@ -7,9 +7,23 @@ jobs:
     runs-on: ubuntu-latest
     container: ciscoappnetworking/kubectl_kind:latest
     steps:
-    - uses: actions/first-interaction@v1
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        issue-message: 'Message that will be displayed on users'' first issue'
-        pr-message: 'Message that will be displayed on users'' first pr'
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+          ref: 'master'
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.NSE_HELM_REPO_KEY }}
+          name: id_rsa # optional
+          known_hosts: ${{ secrets.NSE_HELM_REPO_HOST }}
+      - run: |
+          git remote add origin https://github.com/paulsterpu/nse-helm-repo
+          git config user.email "paulsterpu@gmail.com"
+          git config user.name "paulsterpu"
+          git checkout master
+          git pull origin master
+          git add .
+          git commit --allow-empty -am "Automatic commit from CircleCI"
+          git push origin master
 
