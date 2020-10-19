@@ -1,6 +1,8 @@
 name: Greetings
 
-on: [push]
+on:
+  push:
+    brancher: [ master ]
 
 jobs:
   publish-helm-chart:

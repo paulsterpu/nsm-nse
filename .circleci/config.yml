@@ -162,11 +162,9 @@ publish-helm-charts-steps: &publish-helm-charts-steps
         command: |
           if [[ "${CIRCLE_PROJECT_USERNAME}" == "cisco-app-networking" ]]; then
             cd deployments
-            mkdir -p helm_repo/docs/ucnf-kiknos
+            mkdir -p helm_repo_tmp/docs/ucnf-kiknos
 
-
-
-            cd helm_repo
+            cd helm_repo_tmp
             git init
             git remote add origin https://github.com/paulsterpu/nse-helm-repo
             git config user.email "paulsterpu@gmail.com"
@@ -174,14 +172,14 @@ publish-helm-charts-steps: &publish-helm-charts-steps
             git pull origin master
 
             cd ..
-            helm package --destination helm_repo/docs helm/mysql-master
-            helm package --destination helm_repo/docs helm/mysql-slave
-            helm package --destination helm_repo/docs helm/nsm-addons
-            helm package --destination helm_repo/docs/ucnf-kiknos helm/ucnf-kiknos/*
-            helm package --destination helm_repo/docs helm/vl3
-            helm package --destination helm_repo/docs helm/vl3_hello
+            helm package --destination helm_repo_tmp/docs helm/mysql-master
+            helm package --destination helm_repo_tmp/docs helm/mysql-slave
+            helm package --destination helm_repo_tmp/docs helm/nsm-addons
+            helm package --destination helm_repo_tmp/docs/ucnf-kiknos helm/ucnf-kiknos/*
+            helm package --destination helm_repo_tmp/docs helm/vl3
+            helm package --destination helm_repo_tmp/docs helm/vl3_hello
 
-            cd helm_repo
+            cd helm_repo_tmp
             helm repo index docs --url https://paulsterpu.github.io/nse-helm-repo/
 
             git add .
